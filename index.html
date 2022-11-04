@@ -17,8 +17,9 @@
       <img :src="logo" alt="logo">
     </div>
     <div class="add">
-      <input type="text" placeholder="New Task">
-      <button>Aggiungi</button>
+      <input @keyup.enter="newTask()" type="text" placeholder="New Task" v-model.trin="newTask">
+      <button  @click="createTask">Aggiungi</button>
+      <p class="errore">{{erroreStringa}}</p>
 
     </div>
 
