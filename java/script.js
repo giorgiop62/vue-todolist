@@ -1,59 +1,58 @@
-const {createApp} = Vue;
+const { createApp } = Vue;
 
 createApp({
-  data(){
+  data() {
     return {
       logo: 'img/logo.png',
-      tasks:[
+      tasks: [
         {
           text: 'studiare',
-          done: true
+          done: false
         },
 
         {
           text: 'mangiare',
-          done: true
+          done: false
         },
-     
+
         {
           text: 'dormire',
           done: false
         },
-     
-     
-       ],
-       newString: '',
-       erroreStringa:'',
 
 
-      
+      ],
+      newString: '',
+      erroreStringa: '',
     }
   },
 
-  methods:{
-    createTask(){
-      console.log(this.newString);
-      this.erroreStringa = '';
-      if(this.newString.length < 5){
-        this.erroreStringa = "Devi inserire almeno 5 caratteri"
-      }else{
-        const newTask = {
+  methods: {
+    createTask() {
+      if (this.newString.length < 5) {
+        this.erroreStringa = "Inserisci una task di almeno 5 caratteri";
+      } else {
+        this.erroreStringa = "";
+
+        this.tasks.push({
           text: this.newString,
           done: false
-        }
-        this.tasks.unshift(newString);
-        this.newString = '';
+        });
       }
+    },
+    setTask(task) {
+      //
+      newDone = !task.done;
+      this.tasks.$set(task, "done", newDone);
 
     },
-
-    removeTask(index){
-      console.log(index);
-
+    deleteTask(index, task) {
+      if (task.done) {
+        this.erroreStringa = "";
+        this.tasks.splice(index, 1);
+        } else {
+        this.erroreStringa = "Devi completare la task prima di poterla eliminare";
+      }
     }
-
   }
-
-
-
 }).mount('#app')

@@ -1,53 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./fontawesome/fontawesome-free-6.2.0-web/css/all.min.css">
   <title>Vue To Do List</title>
   <link rel="stylesheet" href="./css/style.css">
   <script src='https://unpkg.com/vue@3'></script>
 </head>
+
 <body>
+  <div class="container">
+    <div id="app">
+      <div class="logo">
+        <img :src="logo" alt="logo">
+      </div>
+      <div class="add">
+        <input @keyup.enter="createTask" type="text" placeholder="New Task" v-model.trim="newString">
+        <button @click="createTask">Aggiungi</button>
+        <p class="errore">{{erroreStringa}}</p>
+      </div>
 
-<div class="container">
-  <div id="app">
-    <div class="logo">
-      <img :src="logo" alt="logo">
+      <div class="list">
+        <ul>
+          <li v-for="(task, index) in tasks" class="task">
+            <span>{{task.text}}</span>
+            <p @click="deleteTask(index, task)">X</p>
+            <!--<i @click="deleteTask(index, task)" class="fa-solid fa-trash"></i>-->
+            <input type="checkbox" @click="setTask(task)" />
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="add">
-      <input @keyup.enter="newTask()" type="text" placeholder="New Task" v-model.trin="newTask">
-      <button  @click="createTask">Aggiungi</button>
-      <p class="errore">{{erroreStringa}}</p>
-
-    </div>
-
-    <div class="list">
-      <ul>
-      
-        <li
-        v-for="(task, index) in tasks"
-        class="task">
-        <span>{{task.text}}</span>
-        <!--<i class="fa-solid fa-trash"></i>-->
-        <p>X</p>
-        
-        
-
-        </li>
-      
-      </ul>
-
-
-    </div>
-
   </div>
-
-</div>
-
-
-  
   <script src="./java/script.js"></script>
 </body>
+
 </html>
